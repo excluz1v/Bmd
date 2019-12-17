@@ -1,0 +1,19 @@
+
+.content {
+    background-color: #fff;
+  text-align: center;
+  }
+  #post1 {
+    margin: 3em auto;
+  }
+  #post2 {
+    margin: 3em auto;
+  }
+  #post3 {
+    margin: 3em auto;
+  }
+  .btn {
+    width: 20%;
+    height: 10%;
+  }
+  
