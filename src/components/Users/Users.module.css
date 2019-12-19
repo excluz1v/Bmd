@@ -1,0 +1,22 @@
+.btn {
+    height: 20px;
+    width: 100%;
+    font-size: 1em;
+}
+img {
+    width: 4em;
+    height: 4em;
+}
+.name {
+    text-align: left;
+}
+span{
+    font-size: 2em;
+    cursor: pointer;
+}
+.selectedPage {
+font-weight: bold;
+}
+.load {
+    margin: auto;
+}
