@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import s from './Users.module.css';
 import usersImg from '../Default-img/user-logo.png';
 import Preloader from '../common/Preloader'
-
+import { NavLink } from 'react-router-dom';
 
 
 let Users = (props) => {
@@ -22,7 +22,7 @@ let Users = (props) => {
             {
                 props.users.map(u => <div className='container row'>
                     <div className='col-3'>
-                        <div><img src={u.photos.small != null ? u.photos.small : usersImg} alt='img' /></div>
+                        <div>><NavLink to ={'/Profile/'+ u.id}><img src={u.photos.small != null ? u.photos.small : usersImg} alt='img' /></NavLink></div>
                         <div>
                             {u.followed ? <Button className={`${s.btn}`} variant="primary" onClick={() => { props.unfollow(u.id) }}>Unfollow</Button> : <Button className={`${s.btn}`} variant="primary" onClick={() => { props.follow(u.id) }}>follow</Button>}
                         </div>

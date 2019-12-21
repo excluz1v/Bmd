@@ -1,9 +1,9 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
-import Header from './components/header/Header';
+import HeaderContainer from './components/header/Header-container';
 import Navbar from './components/navbar/Navbar';
-import { ProfileContainer } from './components/profile/Profile-container';
+import  ProfileAPI from './components/profile/ProfileAPI';
 import SideBar from './components/SideBar'
 import { BrowserRouter, Route } from 'react-router-dom';
 import Dialogs from './components/Dialogs/Dialogs'
@@ -20,10 +20,10 @@ function App(props) {
   return (
     <BrowserRouter>
       <div className='app-wrapper container'>
-        <Header />
+        <HeaderContainer />
         <div className='container row' id='nav'>
           <Navbar />
-          <Route path='/profile' render={() => <ProfileContainer profile={props.store.getState().profile} />} />
+          <Route path='/Profile/:UserId' render={() => <ProfileAPI  />} />
           <Route path='/Dialogs' render={() => <Dialogs post={props.store.getState().history} />} />
           <Route path='/Friends' render={() => <Friends />} />
           <Route path='/News' render={() => <News />} />
