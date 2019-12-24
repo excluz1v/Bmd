@@ -26,28 +26,9 @@ let Users = (props) => {
                             {u.followed ?
                                 <Button className={`${s.btn}`} disabled={props.buttonIsClicked}
                                     variant="primary"
-                                    onClick={() => {
-                                        props.buttonIsClickededAC(true)
-                                        unFollowUser(u.id).then(data => {
-                                            if (data.resultCode === 0) {
-                                                props.unfollowAC(u.id)
-                                            }
-                                            props.buttonIsClickededAC(false)
-                                        })
+                                    onClick={() => {props.ClickFollowThunkCreator(u.id)
                                     }}>Unfollow</Button> :
-                                <Button className={`${s.btn}`} disabled={props.buttonIsClicked} variant="primary" onClick={() => {
-                                    props.buttonIsClickededAC(true);
-                                    FollowUser(u.id).then(data => {
-                                        // debugger
-                                        if (data.resultCode === 0) {
-                                            props.followAC(u.id)
-                                        }
-                                        props.buttonIsClickededAC(false);
-                                    })
-
-
-
-                                }}>follow</Button>}
+                                <Button className={`${s.btn}`} disabled={props.buttonIsClicked} variant="primary" onClick={() => {props.ClickUnFollowThunkCreator(u.id)}}>follow</Button>}
                         </div>
                     </div>
                     <div className='col-9'>

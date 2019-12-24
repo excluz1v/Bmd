@@ -99,9 +99,9 @@ export const setPageThunkCreator = (pageNumber, pageSize) => {
 
 export const ClickFollowThunkCreator = (userId) => {
     return (dispatch) => {
-        debugger
+
         dispatch(buttonIsClickededAC(true/*,u.id*/));
-        dispatch(unFollowUser(userId)).then(data => {
+        unFollowUser(userId).then(data => {
             if (data.resultCode === 0) {
                 dispatch(unfollowAC(userId))
             }
@@ -110,15 +110,14 @@ export const ClickFollowThunkCreator = (userId) => {
     }
 }
 export const ClickUnFollowThunkCreator = (userId) => {
-    console.log(userId)
-    // return (dispatch) => {
-        
-        // dispatch(buttonIsClickededAC(true/*,u.id*/));
-        // dispatch(FollowUser(userId)).then(data => {
-        //     if (data.resultCode === 0) {
-        //         dispatch(followAC(userId))
-        //     }
-        //     dispatch(buttonIsClickededAC(false/*,u.id*/));
-        // })
-    // }
+
+    return (dispatch) => {
+        dispatch(buttonIsClickededAC(true/*,u.id*/));
+        FollowUser(userId).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(followAC(userId))
+            }
+            dispatch(buttonIsClickededAC(false/*,u.id*/));
+        })
+    }
 }

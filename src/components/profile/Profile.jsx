@@ -4,8 +4,7 @@ import Post1 from './Post1/post1';
 import 'bootstrap/dist/css/bootstrap.css';
 import Button from 'react-bootstrap/Button';
 import Preloader from '../common/Preloader'
-import { Redirect } from 'react-router-dom';
-
+import Status from './Status'
 
 let PostDiv = (props) => {
     return <div className="row">{props.message}</div>
@@ -24,16 +23,13 @@ const Profile = (props) => {
 
     return (
         <div className='content container col-7'>
-            {/* <Post1 message='Hi there' smile='good' /> */}
-            {Post}
+            
+            <Status {...props} status={'hellow world'} />
             <textarea ref={Text} onChange={SendTextArea} value={props.profile.NewPostText}></textarea>
             <Button className={`${s.btn}`} onClick={props.AddPostCreateAction} variant="primary">Add post</Button>
-            <div>
-                <div><img src={props.profile.profile.photos.small} /></div>
-                <span>Ищу работу?: {props.profile.profile.lookingForAJobDescription}</span>
-                <br />
-                <span>О себе?: {props.profile.profile.aboutMe}</span>
-            </div>
+
+           
+            {Post}
         </div >
     )
 }
