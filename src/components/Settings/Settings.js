@@ -1,5 +1,8 @@
 import React from 'react';
 import './Settings.css';
+import { connect } from 'react-redux';
+import { AuthRedirect } from '../../hoc/AuthRedirect'
+import { compose } from 'redux';
 
 let Settings = () => {
     return (
@@ -11,4 +14,12 @@ let Settings = () => {
         </div>
     )
 }
-export default Settings
+let mapStateToProps = (state) => {
+    return {
+        auth: state.auth.isAuth
+    }
+}
+export let SettingsContainer = compose(connect(mapStateToProps, {}),
+    AuthRedirect)(Settings)
+
+

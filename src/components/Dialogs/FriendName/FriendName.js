@@ -17,16 +17,12 @@ let FriendName = (props) => {
             </div>
         )
     }
-
-
-    let DialogsOutdata = props.post.DialogsData.map((ele) => <DialogItem ava={ele.img} name={ele.name}/>)
+    let DialogsOutdata = props.history.DialogsData.map((ele) => <DialogItem ava={ele.img} name={ele.name} />)
 
     return (
         <div className={`col-3 ${s.conversation}`}>
-
             {DialogsOutdata}
         </div>
-
     )
 }
 

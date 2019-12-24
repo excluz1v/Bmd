@@ -1,24 +1,29 @@
-import React from 'react';
-import UsersApi from './UsersApi'
-import { connect } from 'react-redux'
-import { followAC, unfollowAC, setUsersAC, setPageAC, setTotalUserCountAC, isFetchingAC } from '../../Redux/users-reducer';
+// import React from 'react';
+// import UsersApi from './UsersApi'
+// import { connect } from 'react-redux'
+// import { followAC, unfollowAC, setUsersAC, setPageAC, setTotalUserCountAC, isFetchingAC, buttonIsClickededAC, getUsersThunkCreator, setPageThunkCreator, ClickFollowThunkCreator, ClickUnFollowThunkCreator } from '../../Redux/users-reducer';
+// import { AuthRedirect } from '../../hoc/AuthRedirect'
+// import { compose } from 'redux';
 
+// let mapStateToProps = (state) => {
+//     return {
 
-let mapStateToProps = (state) => {
-    return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
-    }
-}
-
-export const UserContainer = connect(mapStateToProps, {
-    followAC,
-    unfollowAC,
-    setUsersAC,
-    setPageAC,
-    setTotalUserCountAC,
-    isFetchingAC
-})(UsersApi)
+//     }
+// }
+// // export default compose (connect(mapStateToProps, {
+// //     followAC,    unfollowAC,
+// //     setUsersAC,    setPageAC,
+// //     setTotalUserCountAC,    isFetchingAC,
+// //     buttonIsClickededAC,    getUsersThunkCreator,
+// //     setPageThunkCreator,    ClickFollowThunkCreator,
+// //     ClickUnFollowThunkCreator
+// // }), AuthRedirect)(UsersApi)
+// let UserRedirectComponent = AuthRedirect(UsersApi)
+// export const UserContainer = connect(mapStateToProps, {
+//     followAC,    unfollowAC,
+//     setUsersAC,    setPageAC,
+//     setTotalUserCountAC,    isFetchingAC,
+//     buttonIsClickededAC,    getUsersThunkCreator,
+//     setPageThunkCreator,    ClickFollowThunkCreator,
+//     ClickUnFollowThunkCreator
+// })(UserRedirectComponent)

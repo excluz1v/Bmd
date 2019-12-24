@@ -2,13 +2,14 @@ import React from 'react';
 import s from './../Dialogs.module.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
+
 let Chat = (props) => {
     return <div className={`row ${s.chat}`}>{props.text}</div>
 }
 let Text = React.createRef()
 let History = (props) => {
-    let DialogOutMessage = props.history.DialogsMessage.map((ele) => <Chat key ={ele.id} text={ele.message} />)
-    let UpgradeHistoryText = (body) => {
+    let DialogOutMessage = props.history.DialogsMessage.map((ele) => <Chat key={ele.id} text={ele.message} />)
+    let UpgradeHistoryText = () => {
         let ddd = Text.current.value;
         props.UpgradeHistoryText(ddd)
     }

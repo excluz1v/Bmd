@@ -6,7 +6,8 @@ import { connect } from 'react-redux'
 
 let mapStateToProps = (state) => {
     return {
-        history: state.history
+        history: state.history,
+        auth: state.auth.isAuth
     }
 }
 let mapDispatchToStore = (dispatch) => {

@@ -26,6 +26,7 @@ const Navbar = () => {
                     <button className='btn'>{iicon(faMusic)}<NavLink to='/Music' activeClassName={s.active}> Music</NavLink></button>
                     <button className='btn'>{iicon(faCog)}<NavLink to='/Settings' activeClassName={s.active}>Settings</NavLink></button>
                     <button className='btn'><NavLink to='/users' activeClassName={s.active}>Users</NavLink></button>
+                <button className='btn'><NavLink to='/login'>Login </NavLink></button>
                 </ul>
             </nav>
       

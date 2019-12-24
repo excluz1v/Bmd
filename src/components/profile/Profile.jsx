@@ -4,15 +4,16 @@ import Post1 from './Post1/post1';
 import 'bootstrap/dist/css/bootstrap.css';
 import Button from 'react-bootstrap/Button';
 import Preloader from '../common/Preloader'
+import { Redirect } from 'react-router-dom';
 
 
 let PostDiv = (props) => {
-    return <div className="row">{props.tttt}</div>
+    return <div className="row">{props.message}</div>
 }
 
 let Text = React.createRef();
 const Profile = (props) => {
-    let Post = props.profile.WallPosts.map((el) => <PostDiv key={el.id} tttt={el.text} />)
+    let Post = props.profile.WallPosts.map((el) => <PostDiv key={el.id} message={el.text} />)
     let SendTextArea = (text) => {
         let ddd = Text.current.value
         props.UpgradePostTextCreateAction(ddd)
@@ -20,9 +21,10 @@ const Profile = (props) => {
     if (!props.profile.profile) {
         return <Preloader />
     }
+
     return (
         <div className='content container col-7'>
-            <Post1 message='Hi there' smile='good' />
+            {/* <Post1 message='Hi there' smile='good' /> */}
             {Post}
             <textarea ref={Text} onChange={SendTextArea} value={props.profile.NewPostText}></textarea>
             <Button className={`${s.btn}`} onClick={props.AddPostCreateAction} variant="primary">Add post</Button>
