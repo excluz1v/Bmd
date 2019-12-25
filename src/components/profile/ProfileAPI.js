@@ -11,11 +11,11 @@ class ProfileAPI extends React.Component {
     componentDidMount() {
 
         let userId = this.props.match.params.UserId;
-        if (!userId) { userId = 5 }
+        if (!userId) { userId = 5475 }
         getProfile(userId).then(response => {
             this.props.setProfileAC(response.data);
             this.props.getStatusThunk(userId);
-debugger
+
         })
     };
     render() {

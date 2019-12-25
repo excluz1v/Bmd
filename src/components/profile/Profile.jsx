@@ -24,7 +24,7 @@ const Profile = (props) => {
     return (
         <div className='content container col-7'>
             
-            <Status {...props} status={'hellow world'} />
+            <Status {...props} status={props.status} />
             <textarea ref={Text} onChange={SendTextArea} value={props.profile.NewPostText}></textarea>
             <Button className={`${s.btn}`} onClick={props.AddPostCreateAction} variant="primary">Add post</Button>
 
