@@ -26,6 +26,9 @@ export const getProfile = (uId) => {
 export const getProfileStatus = (id) => {
     return instance.get(`/profile/status/${id}`)
 }
-export const updateProfileStatus =(text)=>{
-    return instance.put('/profile/status', {status: text})
+export const updateProfileStatus = (text) => {
+    return instance.put('/profile/status', { status: text })
+}
+export const authLoginAPI = (email, password) => {
+    return instance.post('/auth/login', { email, password }.then(response => { return console.log(response)}))
 }

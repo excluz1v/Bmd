@@ -6,7 +6,6 @@ class Status extends React.Component {
     state = {
         editMode: false,
         status: this.props.status
-
     }
     activateEditMode = () => {
         this.setState({
@@ -24,13 +23,22 @@ class Status extends React.Component {
             status: e.currentTarget.value
         })
     }
+    componentDidUpdate(prevProps, prevState) {
+        console.log('update')
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+            // console.log('update')
+        }
+    }
     render() {
 
         return (
             <div>
                 <div>{
                     !this.state.editMode && <div>
-                        <span onDoubleClick={this.activateEditMode}>{this.props.status ||'Empty status'}</span>
+                        <span onDoubleClick={this.activateEditMode}>{this.props.status || 'Empty status'}</span>
                     </div>}
 
                     {this.state.editMode && <div>
@@ -39,7 +47,7 @@ class Status extends React.Component {
                 </div>
                 <p></p>
                 <p></p>
-                <div><img onclick={this.props.getStatusThunk} src={this.props.profile.profile.photos.small} /></div>
+                <div><img /*onclick={this.props.getStatusThunk}*/ src={this.props.profile.profile.photos.small} /></div>
                 <span>Ищу работу?: {this.props.profile.profile.lookingForAJobDescription}</span>
                 <br />
                 <span>О себе?: {this.props.profile.profile.aboutMe}</span>
