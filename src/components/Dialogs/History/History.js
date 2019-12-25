@@ -1,17 +1,27 @@
 import React from 'react';
 import s from './../Dialogs.module.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import { Field, reduxForm } from 'redux-form'
 
+let HistoryForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field name='history' component='textarea' />}
+            <button ></button>
+        </form>
+    )
+}
 
+let HistoreFormRedux = reduxForm({ form: 'Chat' })(HistoryForm)
 let Chat = (props) => {
     return <div className={`row ${s.chat}`}>{props.text}</div>
 }
-let Text = React.createRef()
+
 let History = (props) => {
-    let DialogOutMessage = props.history.DialogsMessage.map((ele) => <Chat key={ele.id} text={ele.message} />)
-    let UpgradeHistoryText = () => {
-        let ddd = Text.current.value;
-        props.UpgradeHistoryText(ddd)
+    let DialogOutMessage = props.history.DialogsMessage.map((ele) => <Chat text={ele.message} />)
+
+    let addNewMessage = (text) => {
+        props.addMessage(text.history)
     }
     return (
         <div className='col-9'>
@@ -19,8 +29,7 @@ let History = (props) => {
                 <div className={`${s.text} col-12`}>Name</div>
             </div>
             {DialogOutMessage}
-            < textarea ref={Text} onChange={UpgradeHistoryText} value={props.history.NewHistoryText}></textarea>
-            <button onClick={props.TextOut}></button>
+            <HistoreFormRedux onSubmit={addNewMessage} />
         </div >
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddDialogActionCreator, UpgradeHistoryTextActionCreator } from '../../../Redux/history-reducer'
+import { AddDialogActionCreator } from '../../../Redux/history-reducer'
 import History from './History'
 import { connect } from 'react-redux'
 
@@ -7,17 +7,12 @@ import { connect } from 'react-redux'
 let mapStateToProps = (state) => {
     return {
         history: state.history,
-        auth: state.auth.isAuth
     }
 }
 let mapDispatchToStore = (dispatch) => {
     return {
-        UpgradeHistoryText: (body) => {
-            dispatch(UpgradeHistoryTextActionCreator(body))
-        },
-        TextOut: () => {
-            dispatch(AddDialogActionCreator());
-            dispatch(UpgradeHistoryTextActionCreator(''))
+        addMessage: (text) => {
+            dispatch(AddDialogActionCreator(text));
         }
     }
 }

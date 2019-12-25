@@ -5,7 +5,16 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Button from 'react-bootstrap/Button';
 import Preloader from '../common/Preloader'
 import Status from './Status'
+import { reduxForm, Field } from 'redux-form'
 
+
+let MessageForm = () => {
+    return (
+        <form action="">
+            <Field name='chat' component={'textarea'} />
+        </form>
+    )
+}
 let PostDiv = (props) => {
     return <div className="row">{props.message}</div>
 }
@@ -23,12 +32,12 @@ const Profile = (props) => {
 
     return (
         <div className='content container col-7'>
-            
+
             <Status {...props} status={props.status} />
             <textarea ref={Text} onChange={SendTextArea} value={props.profile.NewPostText}></textarea>
             <Button className={`${s.btn}`} onClick={props.AddPostCreateAction} variant="primary">Add post</Button>
 
-           
+
             {Post}
         </div >
     )

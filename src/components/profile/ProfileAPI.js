@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { getProfile } from '../../API/API';
 import { compose } from 'redux';
 import { getStatusThunk,updateStatusThunk } from '../../Redux/Profile-reducer'
+// import {reduxForm} from 'redux-form'
 
 class ProfileAPI extends React.Component {
     componentDidMount() {

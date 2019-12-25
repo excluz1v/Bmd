@@ -1,8 +1,5 @@
-export let AddDialogActionCreator = () => {
-    return { type: "AddDialog" }
-}
-export let UpgradeHistoryTextActionCreator = (text) => {
-    return { type: 'UpgradeHistoryText', data: text }
+export let AddDialogActionCreator = (text) => {
+    return { type: "AddDialog", text }
 }
 
 let initialState = {
@@ -16,25 +13,17 @@ let initialState = {
             { id: 5, name: 'Lada', img: 'https://avatars.mds.yandex.net/get-pdb/195449/0642142b-b08f-414f-b34d-ca70e6586c2a/s1200' },
             { id: 6, name: 'Maxim', img: 'https://w-dog.ru/wallpapers/4/17/562770035380737/paren-model-letchik-kostyum-ochki.jpg' }
         ],
-    NewHistoryText: ""
 }
 
 export const HistoryReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case 'AddDialog':
-            let i = 0;
             return {
                 ...state,
-                DialogsMessage: [...state.DialogsMessage, { id: i++, message: state.NewHistoryText }]
-            };
-        case 'UpgradeHistoryText':
-            return {
-                ...state,
-                NewHistoryText: action.data
+                DialogsMessage: [...state.DialogsMessage, { message: action.text }]
             };
         default: return state;
     }
-
 }
 
