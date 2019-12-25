@@ -1,4 +1,4 @@
-import { getProfileStatus } from '../API/API'
+import { getProfileStatus, updateProfileStatus } from '../API/API'
 
 export let AddPostCreateAction = () => {
     return { type: "AddPost" }
@@ -19,7 +19,7 @@ let initialState = {
     WallPosts: [{}],
     NewPostText: "",
     profile: null,
-    status: ''
+    status: null
 }
 let i = 0;
 export const ProfileReducer = (state = initialState, action) => {
@@ -48,8 +48,19 @@ export const ProfileReducer = (state = initialState, action) => {
 export const getStatusThunk = (userId) => {
 
     return (dispatch) => {
-        getProfileStatus(userId).then(response => {console.log(response)
-            dispatch(setStatusAC(response))
+        getProfileStatus(userId).then(response => {
+            dispatch(setStatusAC(response.data))
+        })
+    }
+}
+
+export const updateStatusThunk = (text) => {
+
+    return (dispatch) => {
+        updateProfileStatus(text).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setStatusAC(text))
+            }
         })
     }
 }

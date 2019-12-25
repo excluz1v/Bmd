@@ -4,19 +4,18 @@ import { connect } from 'react-redux';
 import { UpgradePostTextCreateAction, AddPostCreateAction, setProfileAC } from '../../Redux/Profile-reducer';
 import { withRouter } from 'react-router-dom';
 import { getProfile } from '../../API/API';
-import { AuthRedirect } from '../../hoc/AuthRedirect'
 import { compose } from 'redux';
-import { getStatusThunk } from '../../Redux/Profile-reducer'
+import { getStatusThunk,updateStatusThunk } from '../../Redux/Profile-reducer'
 
 class ProfileAPI extends React.Component {
     componentDidMount() {
-        debugger
+
         let userId = this.props.match.params.UserId;
         if (!userId) { userId = 5 }
         getProfile(userId).then(response => {
             this.props.setProfileAC(response.data);
-            // this.getProfileStatus(userId)
-           debugger
+            this.props.getStatusThunk(userId);
+debugger
         })
     };
     render() {
@@ -29,9 +28,9 @@ class ProfileAPI extends React.Component {
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage,
+        status:state.profilePage.status
     }
 }
 
-export default compose(connect(mapStateToProps, { UpgradePostTextCreateAction, AddPostCreateAction, setProfileAC, getStatusThunk }),
-    AuthRedirect,
+export default compose(connect(mapStateToProps, { UpgradePostTextCreateAction, AddPostCreateAction, setProfileAC, getStatusThunk,updateStatusThunk }),
     withRouter)(ProfileAPI)
