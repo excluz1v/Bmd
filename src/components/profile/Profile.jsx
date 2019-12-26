@@ -4,12 +4,15 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Preloader from '../common/Preloader'
 import Status from './Status'
 import { reduxForm, Field } from 'redux-form'
+import { required, maxLengthCreator } from '../../Utilits/Validators/Validators'
+import {Textarea} from '../common/formTypes'
 
+let maxLength = maxLengthCreator(10)
 
 let MessageForm = (props) => {
     return (
         <form action="" onSubmit={props.handleSubmit}>
-            <Field name='chat' component={'textarea'} />
+            <Field placeholder='enter your message' name='chat' component={Textarea} validate={[required, maxLength]} />
             <button className={`${s.btn}`} variant="primary">Add post</button>
         </form>
     )
@@ -27,7 +30,6 @@ const Profile = (props) => {
     }
     let addPostFunction = (text) => {
         props.AddPostThunk(text.chat)
-
     }
     return (
         <div className='content container col-7'>
