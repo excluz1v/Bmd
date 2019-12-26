@@ -11,7 +11,7 @@ export const getUsers = (currentPage = 1, pageSize = 10) => {
     return instance.get(`/users?page=${currentPage}&count=${pageSize}`).then(response => { return response })
 }
 export const authUser = () => {
-    return instance.get(`/auth/me`).then(response => { return response.data })
+    return instance.get(`/auth/me`)/*.then(response => { return response.data })*/
 }
 export const FollowUser = (id) => {
     return instance.post(`/follow/${id}`).then(response => { return response.data })
@@ -29,6 +29,9 @@ export const getProfileStatus = (id) => {
 export const updateProfileStatus = (text) => {
     return instance.put('/profile/status', { status: text })
 }
-export const authLoginAPI = (email, password) => {
-    return instance.post('/auth/login', { email, password }.then(response => { return console.log(response)}))
+export const authLoginAPI = (email, password, rememberMe = false) => {
+    return instance.post('/auth/login', { email, password,rememberMe })
+}
+export const authLogOutAPI = () => {
+    return instance.delete('/auth/login').then(response =>{} )
 }

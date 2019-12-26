@@ -1,3 +1,6 @@
+import { authLoginAPI, authUser, authLogOutAPI } from '../API/API'
+
+
 const setUserData = 'Set_User_Data'
 
 let initialState = {
@@ -11,13 +14,35 @@ export const authReducer = (state = initialState, action) => {
         case setUserData:
             return {
                 ...state,
-                ...action.data,
-                isAuth:true
+                ...action.payload,
+                isAuth: true
             }
         default: return state;
     }
 }
 
-export let SET_USER_DATA_AC = ({id, login, email}) => {
-    return { type: setUserData, data: { id, login, email } }
+export let SET_USER_DATA_AC = ( id, login, email, isAuth ) => {
+ 
+    return { type: setUserData, payload: { id, login, email,  isAuth } }
+}
+
+
+export let AuthLoginThunk = (email, password, rememberMe) => (dispatch) => {
+
+    authLoginAPI(email, password, rememberMe).then(response => {
+        if (response.data.resultCode === 0) {
+            authUser()
+            .then(res =>{
+                debugger
+                return         dispatch(SET_USER_DATA_AC(res.data.data.id, res.data.data.login, res.data.data.email, true))})
+        }
+    })
+}
+
+export let AuthLogOutThunk = () => (dispatch) => {
+    authLogOutAPI().then(response => {
+        if (response.data.resultCode === 1) {
+            authUser().dispatch(SET_USER_DATA_AC(response.data.payload))
+        }
+    })
 }

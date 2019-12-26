@@ -8,9 +8,9 @@ import {authUser} from '../../API/API'
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        authUser().then(data => {
-            if (data.resultCode === 0) {
-                this.props.SET_USER_DATA_AC(data.data)
+        authUser().then(response => {
+            if (response.resultCode === 0) {
+                this.props.SET_USER_DATA_AC(response.data, true)
             }
         })
     }

@@ -2,11 +2,15 @@ import React from 'react';
 import s from './../Dialogs.module.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Field, reduxForm } from 'redux-form'
+import { Textarea } from '../../common/formTypes';
+import { maxLengthCreator, required } from '../../../Utilits/Validators/Validators';
+
+let maxLength = maxLengthCreator(100)
 
 let HistoryForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field name='history' component='textarea' />}
+            <Field name='history' component={Textarea} validate={[maxLength, required]}/>
             <button ></button>
         </form>
     )
