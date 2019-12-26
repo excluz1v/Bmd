@@ -31,21 +31,19 @@ class Status extends React.Component {
         }
     }
     render() {
-
         return (
             <div>
                 <div>{
                     !this.state.editMode && <div>
                         <span onDoubleClick={this.activateEditMode}>{this.props.status || 'Empty status'}</span>
                     </div>}
-
                     {this.state.editMode && <div>
                         <input autoFocus onChange={this.onStatusChange} onBlur={this.Deactivatemode} value={this.state.status}></input>
                     </div>}
                 </div>
                 <p></p>
                 <p></p>
-                <div><img /*onclick={this.props.getStatusThunk}*/ src={this.props.profile.profile.photos.small} /></div>
+                <div><img src={this.props.profile.profile.photos.small} alt='img' /></div>
                 <span>Ищу работу?: {this.props.profile.profile.lookingForAJobDescription}</span>
                 <br />
                 <span>О себе?: {this.props.profile.profile.aboutMe}</span>

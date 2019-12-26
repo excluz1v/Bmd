@@ -5,7 +5,6 @@ import s from './Users.module.css';
 import usersImg from '../Default-img/user-logo.png';
 import Preloader from '../common/Preloader'
 import { NavLink } from 'react-router-dom';
-import { getUsers, unFollowUser, FollowUser } from '../../API/API';
 
 let Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);

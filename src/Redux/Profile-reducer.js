@@ -1,11 +1,9 @@
 import { getProfileStatus, updateProfileStatus } from '../API/API'
 
-export let AddPostCreateAction = () => {
-    return { type: "AddPost" }
+export let AddPostCreateAction = (text) => {
+    return { type: "AddPost", text }
 }
-export let UpgradePostTextCreateAction = (text) => {
-    return { type: "UpgradePostText", data: text }
-}
+
 
 export let setProfileAC = (profile) => {
     return { type: "setProfile", profile: profile }
@@ -17,7 +15,6 @@ export let setStatusAC = (status) => {
 
 let initialState = {
     WallPosts: [{}],
-    NewPostText: "",
     profile: null,
     status: null
 }
@@ -27,14 +24,9 @@ export const ProfileReducer = (state = initialState, action) => {
         case 'AddPost': {
             return {
                 ...state,
-                WallPosts: [...state.WallPosts, { id: i++, text: state.NewPostText }],
-                NewPostText: ''
+                WallPosts: [...state.WallPosts, { id: i++, text: action.text }],
             }
         }
-        case 'UpgradePostText':
-            let stateCopy = { ...state };
-            stateCopy.NewPostText = action.data;
-            return stateCopy;
         case "setProfile": {
             return { ...state, profile: action.profile }
         }
@@ -46,7 +38,6 @@ export const ProfileReducer = (state = initialState, action) => {
 }
 
 export const getStatusThunk = (userId) => {
-
     return (dispatch) => {
         getProfileStatus(userId).then(response => {
             dispatch(setStatusAC(response.data))
@@ -55,12 +46,16 @@ export const getStatusThunk = (userId) => {
 }
 
 export const updateStatusThunk = (text) => {
-
     return (dispatch) => {
         updateProfileStatus(text).then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(setStatusAC(text))
             }
         })
+    }
+}
+export const AddPostThunk = (text) => {
+    return (dispatch) => {
+        dispatch(AddPostCreateAction(text))
     }
 }

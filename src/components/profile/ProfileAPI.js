@@ -1,12 +1,10 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { UpgradePostTextCreateAction, AddPostCreateAction, setProfileAC } from '../../Redux/Profile-reducer';
+import { AddPostThunk, setProfileAC, getStatusThunk, updateStatusThunk } from '../../Redux/Profile-reducer';
 import { withRouter } from 'react-router-dom';
 import { getProfile } from '../../API/API';
 import { compose } from 'redux';
-import { getStatusThunk,updateStatusThunk } from '../../Redux/Profile-reducer'
-// import {reduxForm} from 'redux-form'
 
 class ProfileAPI extends React.Component {
     componentDidMount() {
@@ -29,9 +27,9 @@ class ProfileAPI extends React.Component {
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage,
-        status:state.profilePage.status
+        status: state.profilePage.status
     }
 }
 
-export default compose(connect(mapStateToProps, { UpgradePostTextCreateAction, AddPostCreateAction, setProfileAC, getStatusThunk,updateStatusThunk }),
+export default compose(connect(mapStateToProps, { AddPostThunk, setProfileAC, getStatusThunk, updateStatusThunk }),
     withRouter)(ProfileAPI)

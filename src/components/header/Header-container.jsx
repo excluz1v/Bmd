@@ -1,6 +1,5 @@
 import React from 'react';
 import './Header.css';
-import * as axios from 'axios';
 import Header from './Header';
 import { connect } from 'react-redux'
 import { SET_USER_DATA_AC } from '../../Redux/auth-reducer';

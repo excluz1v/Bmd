@@ -1,45 +1,42 @@
 import React from 'react';
 import s from './Profile.module.css';
-import Post1 from './Post1/post1';
 import 'bootstrap/dist/css/bootstrap.css';
-import Button from 'react-bootstrap/Button';
 import Preloader from '../common/Preloader'
 import Status from './Status'
 import { reduxForm, Field } from 'redux-form'
 
 
-let MessageForm = () => {
+let MessageForm = (props) => {
     return (
-        <form action="">
+        <form action="" onSubmit={props.handleSubmit}>
             <Field name='chat' component={'textarea'} />
+            <button className={`${s.btn}`} variant="primary">Add post</button>
         </form>
     )
 }
 let PostDiv = (props) => {
     return <div className="row">{props.message}</div>
 }
+let MessageFormRedux = reduxForm({ form: 'profilemessage' })(MessageForm)
 
-let Text = React.createRef();
 const Profile = (props) => {
-    let Post = props.profile.WallPosts.map((el) => <PostDiv key={el.id} message={el.text} />)
-    let SendTextArea = (text) => {
-        let ddd = Text.current.value
-        props.UpgradePostTextCreateAction(ddd)
-    }
+    let Post = props.profile.WallPosts.map((el) => <PostDiv message={el.text} />)
+
     if (!props.profile.profile) {
         return <Preloader />
     }
+    let addPostFunction = (text) => {
+        props.AddPostThunk(text.chat)
 
+    }
     return (
         <div className='content container col-7'>
 
             <Status {...props} status={props.status} />
-            <textarea ref={Text} onChange={SendTextArea} value={props.profile.NewPostText}></textarea>
-            <Button className={`${s.btn}`} onClick={props.AddPostCreateAction} variant="primary">Add post</Button>
-
-
+            <MessageFormRedux onSubmit={addPostFunction} />
             {Post}
         </div >
     )
 }
 export default Profile;
+
