@@ -33,5 +33,5 @@ export const authLoginAPI = (email, password, rememberMe = false) => {
     return instance.post('/auth/login', { email, password,rememberMe })
 }
 export const authLogOutAPI = () => {
-    return instance.delete('/auth/login').then(response =>{} )
+    return instance.delete('/auth/login')
 }

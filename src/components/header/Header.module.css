@@ -7,9 +7,18 @@
     margin: 0 auto;
     }
 .login {
-float: right;
+justify-content: right;
+align-items: flex-end;
+align-content: flex-end;
     }
 #login {
     width: 3em!;
     height: 2em!;
+}
+#logOut{
+    height: 1em!;
+    width: 1em!;
+}
+#icon {
+    font-size: 6em;
 }

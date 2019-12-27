@@ -4,6 +4,7 @@ import { InputLogin } from '../common/formTypes';
 import { required, maxLengthCreator } from '../../Utilits/Validators/Validators'
 import { connect } from 'react-redux'
 import { AuthLoginThunk } from '../../Redux/auth-reducer'
+import { Redirect } from 'react-router-dom';
 
 let maxLenght25 = maxLengthCreator(25)
 
@@ -22,10 +23,12 @@ let LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 let Login = (props) => {
 
     const onSubmit2 = (formData) => {
-        console.log(formData.email,formData.password,formData.rememberMe)
         props.AuthLoginThunk(formData.email, formData.password, formData.rememberMe)
     }
 
+    if (props.isAuth) {
+        return <Redirect to='/profile' />
+    }
     return (
         <div>
             <h2>Login</h2>
@@ -35,4 +38,8 @@ let Login = (props) => {
     )
 }
 
-export default connect(null, { AuthLoginThunk })(Login)
+let matStateToProps = (state) => ({
+    isAuth : state.auth.isAuth
+})
+
+export default connect(matStateToProps, { AuthLoginThunk })(Login)
