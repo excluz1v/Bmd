@@ -5,12 +5,17 @@ import * as serviceWorker from './serviceWorker';
 import store from './Redux/redux-store'
 import 'bootstrap/dist/css/bootstrap.css';
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom';
 
 
 
 
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}><App store={store} /></Provider>
+    </BrowserRouter>, document.getElementById('root')
 
-ReactDOM.render(<Provider store={store}><App store={store} /></Provider>, document.getElementById('root'));
+);
 serviceWorker.unregister();
 
 

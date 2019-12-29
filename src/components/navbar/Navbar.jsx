@@ -16,20 +16,19 @@ const Navbar = () => {
         return <FontAwesomeIcon icon={iconname} />
     }
     return (
-        
-            <nav className={`${s.nav} container col-3`}>
-                <ul>
-                    <button className='btn'>{iicon(faUser)}<NavLink to='/Profile' activeClassName={s.active}>Profile</NavLink></button>
-                    <button className='btn'>{iicon(faUserFriends)}<NavLink to='/Friends' activeClassName={s.active}>Friends</NavLink></button>
-                    <button className='btn'>{iicon(faEnvelope)}<NavLink to='/Dialogs' activeClassName={s.active}>Messages</NavLink></button>
-                    <button className='btn'>{iicon(faNewspaper)}<NavLink to='/News' activeClassName={s.active}>News</NavLink></button>
-                    <button className='btn'>{iicon(faMusic)}<NavLink to='/Music' activeClassName={s.active}> Music</NavLink></button>
-                    <button className='btn'>{iicon(faCog)}<NavLink to='/Settings' activeClassName={s.active}>Settings</NavLink></button>
-                    <button className='btn'><NavLink to='/users' activeClassName={s.active}>Users</NavLink></button>
+
+        <nav className={`${s.nav} container col-3`}>
+            <ul>
+                <button className='btn'>{iicon(faUser)}<NavLink to='/Profile' activeClassName={s.active}>Profile</NavLink></button>
+                <button className='btn'>{iicon(faEnvelope)}<NavLink to='/Dialogs' activeClassName={s.active}>Messages</NavLink></button>
+                <button className='btn'>{iicon(faNewspaper)}<NavLink to='/News' activeClassName={s.active}>News</NavLink></button>
+                <button className='btn'>{iicon(faMusic)}<NavLink to='/Music' activeClassName={s.active}> Music</NavLink></button>
+                <button className='btn'>{iicon(faCog)}<NavLink to='/Settings' activeClassName={s.active}>Settings</NavLink></button>
+                <button className='btn'><NavLink to='/users' activeClassName={s.active}>Users</NavLink></button>
                 <button className='btn'><NavLink to='/login'>Login </NavLink></button>
-                </ul>
-            </nav>
-      
+            </ul>
+        </nav>
+
     )
 }
 export default Navbar;

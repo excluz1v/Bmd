@@ -1,5 +1,8 @@
 import React from 'react';
 import './Music.css';
+import { AuthRedirect } from '../../hoc/AuthRedirect'
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 let Music = () => {
     return (
@@ -11,4 +14,11 @@ let Music = () => {
     )
 }
 
-export default Music
+let mapStateToProps = (state) => {
+    return {
+        auth: state.auth.isAuth
+    }
+}
+
+export let MusicContainer = compose(connect(mapStateToProps, {}),
+    AuthRedirect)(Music)

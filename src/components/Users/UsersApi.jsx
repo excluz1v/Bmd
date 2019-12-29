@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Users from './Users';
 import { connect } from 'react-redux'
 import { followAC, unfollowAC, buttonIsClickededAC, setPageAC, getUsersThunkCreator, setPageThunkCreator, ClickFollowThunkCreator, ClickUnFollowThunkCreator } from '../../Redux/users-reducer';
+import {usersSelector,upageSizeSelector,totalUsersCountSelector,currentPageSelector, isFetchingSelector,buttonIsClickedSelector} from '../../Redux/usersSelectors'
+
 
 class UsersAjax extends React.Component {
     componentDidMount() {
@@ -21,12 +23,12 @@ class UsersAjax extends React.Component {
 }
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        buttonIsClicked: state.usersPage.buttonIsClicked,
+        users: usersSelector(state),
+        pageSize: upageSizeSelector(state),
+        totalUsersCount: totalUsersCountSelector(state),
+        currentPage: currentPageSelector(state),
+        isFetching: isFetchingSelector(state),
+        buttonIsClicked: buttonIsClickedSelector(state),
     }
 }
 export const UserContainer = connect(mapStateToProps, {

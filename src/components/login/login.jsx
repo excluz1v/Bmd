@@ -5,6 +5,7 @@ import { required, maxLengthCreator } from '../../Utilits/Validators/Validators'
 import { connect } from 'react-redux'
 import { AuthLoginThunk } from '../../Redux/auth-reducer'
 import { Redirect } from 'react-router-dom';
+import s from '../common/formTypes.module.css'
 
 let maxLenght25 = maxLengthCreator(25)
 
@@ -14,7 +15,8 @@ let LoginForm = (props) => {
             <div><Field component={InputLogin} validate={[required, maxLenght25]} name='email' type="text" placeholder='email' /></div>
             <div><Field component={InputLogin} validate={[required, maxLenght25]} name='password' type="password" placeholder='password' /></div>
             <div><Field component={'input'} name='rememberMe' type="checkbox" /></div>Remember me
-        <div><button>Submit</button></div>
+            { props.error && <div className={`${s.formError}`}>{props.error}</div>}
+            <div><button>Submit</button></div>
         </form>
     )
 }
@@ -30,7 +32,7 @@ let Login = (props) => {
         return <Redirect to='/profile' />
     }
     return (
-        <div>
+        <div className={`${s.loginWindow}`}>
             <h2>Login</h2>
             <LoginReduxForm onSubmit={onSubmit2} />
         </div>
@@ -39,7 +41,8 @@ let Login = (props) => {
 }
 
 let matStateToProps = (state) => ({
-    isAuth : state.auth.isAuth
+    isAuth: state.auth.isAuth,
+   
 })
 
 export default connect(matStateToProps, { AuthLoginThunk })(Login)

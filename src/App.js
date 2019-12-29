@@ -6,34 +6,56 @@ import Navbar from './components/navbar/Navbar';
 import ProfileAPI from './components/profile/ProfileAPI';
 import SideBar from './components/SideBar'
 import { BrowserRouter, Route } from 'react-router-dom';
-import Dialogs from './components/Dialogs/Dialogs'
+import {DialogsContainer} from './components/Dialogs/Dialogs'
 import Friends from './components/friends/Friends';
-import News from './components/News/News';
-import Music from './components/Music/Music';
+import {NewsContainer} from './components/News/News';
+import {MusicContainer} from './components/Music/Music';
 import { SettingsContainer } from './components/Settings/Settings';
 import { UserContainer } from './components/Users/UsersApi';
 import Login from './components/login/login'
+import { connect } from 'react-redux';
+import { authUser } from './API/API'
+import { authUserData } from './Redux/app-reducer'
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
+import Preloader from './components/common/Preloader'
 
-function App(props) {
-  return (
-    <BrowserRouter>
+class App extends React.Component {
+
+  componentDidMount() {
+    this.props.authUserData()
+
+  }
+
+  render() {
+    if (!this.props.initialize) {
+      return <Preloader />
+    }
+    return (
       <div className='app-wrapper container'>
         <HeaderContainer />
         <div className='container row' id='nav'>
           <Navbar />
           <Route path='/Profile/:UserId?' render={() => <ProfileAPI />} />
-          <Route path='/Dialogs' render={() => <Dialogs  />} />
-          <Route path='/Friends' render={() => <Friends />} />
-          <Route path='/News' render={() => <News />} />
-          <Route path='/Music' render={() => <Music />} />
+          <Route path='/Dialogs' render={() => <DialogsContainer />} />
+
+          <Route path='/News' render={() => <NewsContainer />} />
+          <Route path='/Music' render={() => <MusicContainer />} />
           <Route path='/Settings' render={() => <SettingsContainer />} />
           <Route path='/users' render={() => <UserContainer />} />
           <Route path='/login' render={() => <Login />} />
           <SideBar />
         </div>
       </div>
-    </BrowserRouter>
-  );
+
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    initialize: state.appred.initialize
+  }
+}
+
+export default compose(withRouter, (connect(mapStateToProps, { authUserData })))(App);

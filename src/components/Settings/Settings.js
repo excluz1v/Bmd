@@ -3,6 +3,7 @@ import './Settings.css';
 import { connect } from 'react-redux';
 import { AuthRedirect } from '../../hoc/AuthRedirect'
 import { compose } from 'redux';
+import {authSelector} from '../../Redux/usersSelectors'
 
 let Settings = () => {
     return (
@@ -16,7 +17,7 @@ let Settings = () => {
 }
 let mapStateToProps = (state) => {
     return {
-        auth: state.auth.isAuth
+        auth: authSelector(state)
     }
 }
 export let SettingsContainer = compose(connect(mapStateToProps, {}),

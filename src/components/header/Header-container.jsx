@@ -8,13 +8,13 @@ import { AuthLogOutThunk } from '../../Redux/auth-reducer'
 
 
 class HeaderContainer extends React.Component {
-    componentDidMount() {
+    /*componentDidMount() {
         authUser().then(response => {
             if (response.resultCode === 0) {
                 this.props.SET_USER_DATA_AC(response.data.data, true)
             }
         })
-    }
+    }*/
     render() {
         return (
             <Header {...this.props} />

@@ -10,7 +10,14 @@ class ProfileAPI extends React.Component {
     componentDidMount() {
 
         let userId = this.props.match.params.UserId;
-        if (!userId) { userId = 5475 }
+        if (!userId) {
+
+            userId = this.props.autorezedUserId
+            if (!userId) {
+                this.props.history.push('/login')
+            }
+
+        }
         getProfile(userId).then(response => {
             this.props.setProfileAC(response.data);
             this.props.getStatusThunk(userId);
@@ -27,7 +34,9 @@ class ProfileAPI extends React.Component {
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        autorezedUserId: state.auth.id,
+        isAuth: state.auth.IsAuth
     }
 }
 

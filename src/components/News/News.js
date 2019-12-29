@@ -1,6 +1,8 @@
 import React from 'react';
 import './news.css'
-
+import { AuthRedirect } from '../../hoc/AuthRedirect'
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 let News = () => {
     return (
@@ -12,5 +14,11 @@ let News = () => {
         </div>
     )
 }
+let mapStateToProps = (state) => {
+    return {
+        auth: state.auth.isAuth
+    }
+}
 
-export default News
+export let NewsContainer = compose(connect(mapStateToProps, {}), AuthRedirect)(News)
+
