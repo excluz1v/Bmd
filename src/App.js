@@ -6,10 +6,10 @@ import Navbar from './components/navbar/Navbar';
 import ProfileAPI from './components/profile/ProfileAPI';
 import SideBar from './components/SideBar'
 import { BrowserRouter, Route } from 'react-router-dom';
-import {DialogsContainer} from './components/Dialogs/Dialogs'
+import { DialogsContainer } from './components/Dialogs/Dialogs'
 import Friends from './components/friends/Friends';
-import {NewsContainer} from './components/News/News';
-import {MusicContainer} from './components/Music/Music';
+import { NewsContainer } from './components/News/News';
+import { MusicContainer } from './components/Music/Music';
 import { SettingsContainer } from './components/Settings/Settings';
 import { UserContainer } from './components/Users/UsersApi';
 import Login from './components/login/login'
@@ -38,7 +38,6 @@ class App extends React.Component {
           <Navbar />
           <Route path='/Profile/:UserId?' render={() => <ProfileAPI />} />
           <Route path='/Dialogs' render={() => <DialogsContainer />} />
-
           <Route path='/News' render={() => <NewsContainer />} />
           <Route path='/Music' render={() => <MusicContainer />} />
           <Route path='/Settings' render={() => <SettingsContainer />} />

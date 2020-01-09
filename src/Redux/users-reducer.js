@@ -1,4 +1,5 @@
 import { getUsers, unFollowUser, FollowUser } from '../API/API';
+import { objReplace } from '../Utilits/Helper'
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -21,22 +22,12 @@ export const usersReducer = (state = initialState, action) => {
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return { ...u, followed: true }
-                    }
-                    return u
-                }),
+                users: objReplace(state.users, 'id', action.userId, { followed: true })
             }
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(u => {
-                    if (u.id === action.userId) {
-                        return { ...u, followed: false }
-                    }
-                    return u
-                }),
+                users: objReplace(state.users, 'id', action.userId, { followed: false })
             }
         case SET_USERS:
             return { ...state, users: action.users }
@@ -77,47 +68,44 @@ export let buttonIsClickededAC = (buttonIsClick/*, userId*/) => {
 }
 
 export const getUsersThunkCreator = (currentPage, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(isFetchingAC(true));
-        getUsers(currentPage, pageSize).then(response => {
-            dispatch(isFetchingAC(false));
-            dispatch(setUsersAC(response.data.items));
-            dispatch(setTotalUserCountAC(response.data.totalCount));
-        })
+        let response = await getUsers(currentPage, pageSize)
+        dispatch(isFetchingAC(false));
+        dispatch(setUsersAC(response.data.items));
+        dispatch(setTotalUserCountAC(response.data.totalCount));
     }
 }
 export const setPageThunkCreator = (pageNumber, pageSize) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setPageAC(pageNumber));
         dispatch(isFetchingAC(true))
-        dispatch(getUsers(pageNumber, pageSize)).then(response => {
-            dispatch(isFetchingAC(false));
-            dispatch(setUsersAC(response.data.items));
-        })
+        let response = await getUsers(pageNumber, pageSize)
+        dispatch(response)
+        dispatch(isFetchingAC(false));
+        dispatch(setUsersAC(response.data.items));
     }
 }
 
-export const ClickFollowThunkCreator = (userId) => {
-    return (dispatch) => {
+const ClickFollowUnfollow = async (userId, dispatch, APIMethod, actionCreator) => {
+    dispatch(buttonIsClickededAC(true));
+    let data = await APIMethod(userId)
+    if (data.resultCode === 0) {
+        dispatch(actionCreator(userId))
+    }
 
-        dispatch(buttonIsClickededAC(true/*,u.id*/));
-        unFollowUser(userId).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(unfollowAC(userId))
-            }
-            dispatch(buttonIsClickededAC(false/*,u.id*/));
-        })
+    dispatch(buttonIsClickededAC(false));
+
+}
+
+
+export const ClickFollowThunkCreator = (userId) => {
+    return async (dispatch) => {
+        ClickFollowUnfollow(userId, dispatch, unFollowUser, unfollowAC)
     }
 }
 export const ClickUnFollowThunkCreator = (userId) => {
-
-    return (dispatch) => {
-        dispatch(buttonIsClickededAC(true/*,u.id*/));
-        FollowUser(userId).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(followAC(userId))
-            }
-            dispatch(buttonIsClickededAC(false/*,u.id*/));
-        })
+    return async (dispatch) => {
+        ClickFollowUnfollow(userId, dispatch, FollowUser, followAC)
     }
 }

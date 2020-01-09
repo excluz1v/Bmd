@@ -5,17 +5,14 @@ import s from './Users.module.css';
 import usersImg from '../Default-img/user-logo.png';
 import Preloader from '../common/Preloader'
 import { NavLink } from 'react-router-dom';
+import Paginator from '../common/Paginator'
 
-let Users = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let page = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        page.push(i)
-    }
+let Users = ({onPageChange, currentPage, totalUsersCount, pageSize, ...props}) => {
+
     return (<>{
         props.isFetching ? <Preloader /> : <div className='content container col-7' >
             {
-                page.map(pageNumber => (< span onClick={() => { props.onPageChange(pageNumber) }} className={props.currentPage === pageNumber ? s.selectedPage : ''} > {pageNumber}</span>))
+                <Paginator onPageChange={onPageChange} currentPage={currentPage} totalUsersCount={totalUsersCount} pageSize={pageSize} />
             }
             {
                 props.users.map(u => <div className='container row'>
@@ -25,9 +22,10 @@ let Users = (props) => {
                             {u.followed ?
                                 <Button className={`${s.btn}`} disabled={props.buttonIsClicked}
                                     variant="primary"
-                                    onClick={() => {props.ClickFollowThunkCreator(u.id)
+                                    onClick={() => {
+                                        props.ClickFollowThunkCreator(u.id)
                                     }}>Unfollow</Button> :
-                                <Button className={`${s.btn}`} disabled={props.buttonIsClicked} variant="primary" onClick={() => {props.ClickUnFollowThunkCreator(u.id)}}>follow</Button>}
+                                <Button className={`${s.btn}`} disabled={props.buttonIsClicked} variant="primary" onClick={() => { props.ClickUnFollowThunkCreator(u.id) }}>follow</Button>}
                         </div>
                     </div>
                     <div className='col-9'>

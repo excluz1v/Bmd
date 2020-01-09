@@ -38,20 +38,18 @@ export const ProfileReducer = (state = initialState, action) => {
 }
 
 export const getStatusThunk = (userId) => {
-    return (dispatch) => {
-        getProfileStatus(userId).then(response => {
-            dispatch(setStatusAC(response.data))
-        })
+    return async (dispatch) => {
+        let response = await getProfileStatus(userId);
+        dispatch(setStatusAC(response.data))
     }
 }
 
 export const updateStatusThunk = (text) => {
-    return (dispatch) => {
-        updateProfileStatus(text).then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setStatusAC(text))
-            }
-        })
+    return async (dispatch) => {
+        let response = await updateProfileStatus(text)
+        if (response.data.resultCode === 0) {
+            dispatch(setStatusAC(text))
+        }
     }
 }
 export const AddPostThunk = (text) => {

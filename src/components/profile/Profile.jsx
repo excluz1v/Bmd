@@ -6,6 +6,7 @@ import Status from './Status'
 import { reduxForm, Field } from 'redux-form'
 import { required, maxLengthCreator } from '../../Utilits/Validators/Validators'
 import {Textarea} from '../common/formTypes'
+import StatusWithHooks from './ProfileWithHucs'
 
 let maxLength = maxLengthCreator(10)
 
@@ -34,7 +35,7 @@ const Profile = (props) => {
     return (
         <div className='content container col-7'>
 
-            <Status {...props} status={props.status} />
+            <StatusWithHooks {...props} status={props.status} />
             <MessageFormRedux onSubmit={addPostFunction} />
             {Post}
         </div >

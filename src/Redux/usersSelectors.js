@@ -17,5 +17,5 @@ export const isFetchingSelector = (state) => {
     return state.usersPage.isFetching
 }
 export const buttonIsClickedSelector = (state) => {
-    return state.usersPage.isFetching
+    return state.usersPage.buttonIsClicked
 }

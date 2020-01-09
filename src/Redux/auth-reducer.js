@@ -24,28 +24,25 @@ export let SET_USER_DATA_AC = (id, login, email, isAuth) => {
 
     return { type: setUserData, payload: { id, login, email, isAuth } }
 }
-export let AuthLoginThunk = (email, password, rememberMe) => (dispatch) => {
-    authLoginAPI(email, password, rememberMe).then(response => {
-        if (response.data.resultCode === 0) {
-            authUser()
-                .then(res => {
-                    return dispatch(SET_USER_DATA_AC(res.data.data.id, res.data.data.login, res.data.data.email, true))
-                })
-        } else {
-            let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some Error'
-            dispatch(stopSubmit('login', { _error: message }))
-        }
-    })
+export let AuthLoginThunk = (email, password, rememberMe) => async (dispatch) => {
+    let response = await authLoginAPI(email, password, rememberMe)
+    if (response.data.resultCode === 0) {
+        authUser()
+            .then(res => {
+                return dispatch(SET_USER_DATA_AC(res.data.data.id, res.data.data.login, res.data.data.email, true))
+            })
+    } else {
+        let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some Error'
+        dispatch(stopSubmit('login', { _error: message }))
+    }
 }
 
-export let AuthLogOutThunk = () => (dispatch) => {
-    authLogOutAPI().then(response => {
-        if (response.data.resultCode === 0) {
-            authUser().then(res => {
-                return dispatch(SET_USER_DATA_AC(res.data.data.id, res.data.data.login, res.data.data.email, false))
-            })
-        } else {
-        }
-    })
+export let AuthLogOutThunk = () => async (dispatch) => {
+    let response = await authLogOutAPI()
+    if (response.data.resultCode === 0) {
+        authUser().then(res => {
+            return dispatch(SET_USER_DATA_AC(res.data.data.id, res.data.data.login, res.data.data.email, false))
+        })
+    }
 }
 
