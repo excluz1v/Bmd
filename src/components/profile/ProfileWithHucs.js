@@ -33,10 +33,10 @@ const StatusWithHooks = (props) => {
             </div>
             <p></p>
             <p></p>
-            <div><img src={props.profile.profile.photos.small} alt='img' /></div>
-            <span>Ищу работу?: {props.profile.profile.lookingForAJobDescription}</span>
+            {/* <div><img src={props.profile.profile.photos.small} alt='img' /></div> */}
+            {/* <span>Ищу работу?: {props.profile.profile.lookingForAJobDescription}</span> */}
             <br />
-            <span>О себе?: {props.profile.profile.aboutMe}</span>
+            {/* <span>О себе?: {props.profile.profile.aboutMe}</span> */}
         </div>
     )
 }
