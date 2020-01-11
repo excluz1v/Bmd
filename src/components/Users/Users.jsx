@@ -12,7 +12,7 @@ let Users = ({onPageChange, currentPage, totalUsersCount, pageSize, ...props}) =
     return (<>{
         props.isFetching ? <Preloader /> : <div className='content container col-7' >
             {
-                <Paginator onPageChange={onPageChange} currentPage={currentPage} totalUsersCount={totalUsersCount} pageSize={pageSize} />
+                <Paginator onPageChange={onPageChange} currentPage={currentPage} totalItemsCount={totalUsersCount} pageSize={pageSize} />
             }
             {
                 props.users.map(u => <div className='container row'>

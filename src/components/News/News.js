@@ -20,5 +20,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-export let NewsContainer = compose(connect(mapStateToProps, {}), AuthRedirect)(News)
+let NewsContainer = compose(connect(mapStateToProps, {}), AuthRedirect)(News)
 
+export {NewsContainer as default}
