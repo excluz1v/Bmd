@@ -10,7 +10,7 @@ import Paginator from '../common/Paginator'
 let Users = ({onPageChange, currentPage, totalUsersCount, pageSize, ...props}) => {
 
     return (<>{
-        props.isFetching ? <Preloader /> : <div className='content container col-7' >
+        props.isFetching ? <div className='content container col-7'><Preloader /></div> : <div className='content container col-7' >
             {
                 <Paginator onPageChange={onPageChange} currentPage={currentPage} totalItemsCount={totalUsersCount} pageSize={pageSize} />
             }

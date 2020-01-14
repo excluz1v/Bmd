@@ -35,3 +35,7 @@ export const authLoginAPI = (email, password, rememberMe = false) => {
 export const authLogOutAPI = () => {
     return instance.delete('/auth/login')
 }
+
+export const saveProfileApi = (profile) => {
+    return instance.put('/profile', profile )
+}

@@ -1,4 +1,4 @@
-import { getProfileStatus, updateProfileStatus } from '../API/API'
+import { getProfileStatus, updateProfileStatus, saveProfileApi } from '../API/API'
 
 export let AddPostCreateAction = (text) => {
     return { type: "AddPost", text }
@@ -55,5 +55,12 @@ export const updateStatusThunk = (text) => {
 export const AddPostThunk = (text) => {
     return (dispatch) => {
         dispatch(AddPostCreateAction(text))
+    }
+}
+
+export const saveProfile = (profile) => {
+    return async (dispatch) => {
+        let response = await saveProfileApi(profile)
+        debugger
     }
 }

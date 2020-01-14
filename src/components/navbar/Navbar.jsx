@@ -5,7 +5,6 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons';
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
-import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import s from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
 

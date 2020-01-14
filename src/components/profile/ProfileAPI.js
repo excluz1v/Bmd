@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { AddPostThunk, setProfileAC, getStatusThunk, updateStatusThunk } from '../../Redux/Profile-reducer';
+import { AddPostThunk, setProfileAC, getStatusThunk, updateStatusThunk, saveProfile } from '../../Redux/Profile-reducer';
 import { withRouter } from 'react-router-dom';
 import { getProfile } from '../../API/API';
 import { compose } from 'redux';
@@ -40,5 +40,5 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default compose(connect(mapStateToProps, { AddPostThunk, setProfileAC, getStatusThunk, updateStatusThunk }),
+export default compose(connect(mapStateToProps, { AddPostThunk, setProfileAC, getStatusThunk, updateStatusThunk, saveProfile }),
     withRouter)(ProfileAPI)

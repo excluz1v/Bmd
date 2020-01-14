@@ -15,7 +15,7 @@ let LoginForm = (props) => {
             <div><Field component={InputLogin} validate={[required, maxLenght25]} name='email' type="text" placeholder='email' /></div>
             <div><Field component={InputLogin} validate={[required, maxLenght25]} name='password' type="password" placeholder='password' /></div>
             <div><Field component={'input'} name='rememberMe' type="checkbox" /></div>Remember me
-            { props.error && <div className={`${s.formError}`}>{props.error}</div>}
+            { props.error ? <div className={`${s.formError}`}>{props.error}</div> : undefined}
             <div><button>Submit</button></div>
         </form>
     )

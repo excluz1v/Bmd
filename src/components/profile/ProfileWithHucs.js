@@ -23,13 +23,14 @@ const StatusWithHooks = (props) => {
     return (
         <div>
             <div>{
-                !editMode &&
+                !editMode ?
                 <div>
                     <span onDoubleClick={activateEditMode}>{props.status || 'Empty status'}</span>
-                </div>}
-                {editMode && <div>
+                </div> : undefined}
+                {editMode ? <div>
                     <input autoFocus onChange={onStatusChange} onBlur={deActivateEditMode} value={status}></input>
-                </div>}
+                </div> : undefined}
+                <div></div>
             </div>
             <p></p>
             <p></p>

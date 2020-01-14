@@ -3,7 +3,6 @@ import React from 'react';
 import Header from './Header';
 import { connect } from 'react-redux'
 import { SET_USER_DATA_AC } from '../../Redux/auth-reducer';
-import { authUser } from '../../API/API'
 import { AuthLogOutThunk } from '../../Redux/auth-reducer'
 
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { AddDialogActionCreator } from '../../../Redux/history-reducer'
 import History from './History'
 import { connect } from 'react-redux'

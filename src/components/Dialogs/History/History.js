@@ -22,7 +22,7 @@ let Chat = (props) => {
 }
 
 let History = (props) => {
-    let DialogOutMessage = props.history.DialogsMessage.map((ele) => <Chat text={ele.message} />)
+    let DialogOutMessage = props.history.DialogsMessage.map((ele) => <Chat key={ele} text={ele.message} />)
 
     let addNewMessage = (text) => {
         props.addMessage(text.history)

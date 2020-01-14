@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { lazy } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import HeaderContainer from './components/header/Header-container';
@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 import { authUserData } from './Redux/app-reducer'
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import Preloader from './components/common/Preloader'
+// import Preloader from './components/common/Preloader'
 import { WithSuspence } from './hoc/WithSuspence'
 
 const NewsContainer = lazy(() => import('./components/News/News'));
@@ -30,9 +30,7 @@ class App extends React.Component {
 
   }
   render() {
-    if (!this.props.initialize) {
-      return <Preloader />
-    }
+
     return (
       <div className='app-wrapper container'>
         <HeaderContainer />

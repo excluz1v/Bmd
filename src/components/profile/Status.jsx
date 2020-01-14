@@ -34,12 +34,12 @@ class Status extends React.Component {
         return (
             <div>
                 <div>{
-                    !this.state.editMode && <div>
+                    !this.state.editMode ? <div>
                         <span onDoubleClick={this.activateEditMode}>{this.props.status || 'Empty status'}</span>
-                    </div>}
-                    {this.state.editMode && <div>
+                    </div> : undefined}
+                    {this.state.editMode ? <div>
                         <input autoFocus onChange={this.onStatusChange} onBlur={this.Deactivatemode} value={this.state.status}></input>
-                    </div>}
+                    </div> : undefined}
                 </div>
                 <p></p>
                 <p></p>

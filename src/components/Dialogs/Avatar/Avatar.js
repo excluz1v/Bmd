@@ -5,7 +5,7 @@ import s from './../Dialogs.module.css';
 let Avatar = (props) => {
 
 
-    let UserAvatar = props.ava.map(elem => <img src={`${elem.img}`} />)
+    let UserAvatar = props.ava.map(elem => <img key ={elem}alt='img' src={`${elem.img}`} />)
 
 
 
