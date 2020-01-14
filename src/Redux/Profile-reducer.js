@@ -1,4 +1,5 @@
-import { getProfileStatus, updateProfileStatus, saveProfileApi } from '../API/API'
+import { getProfileStatus, updateProfileStatus, saveProfileApi,savePhotoApi } from '../API/API'
+import { stopSubmit } from 'redux-form'
 
 export let AddPostCreateAction = (text) => {
     return { type: "AddPost", text }
@@ -13,6 +14,9 @@ export let setStatusAC = (status) => {
     return { type: 'setStatus', status }
 }
 
+let savePhotoSucces = (photo) => {
+    return { type: 'savePhoto', photo }
+}
 let initialState = {
     WallPosts: [{}],
     profile: null,
@@ -32,6 +36,9 @@ export const ProfileReducer = (state = initialState, action) => {
         }
         case "setStatus": {
             return { ...state, status: action.status }
+        }
+        case "savePhoto": {
+            return { ...state, profile: { ...state.profile, photos: action.photo } }
         }
         default: return state;
     }
@@ -61,6 +68,21 @@ export const AddPostThunk = (text) => {
 export const saveProfile = (profile) => {
     return async (dispatch) => {
         let response = await saveProfileApi(profile)
-        debugger
+        if (response.data.resultCode === 0) {
+            dispatch(setProfileAC(profile))
+        } else {
+            dispatch(stopSubmit('ProfileInfo', { _error: response.data.messages[0] }))
+            return Promise.reject(response.data.messages[0])
+        }
+    }
+}
+
+export const savePhoto = (file) => {
+
+    return async (dispatch) => {
+        let response = await savePhotoApi(file)
+        if (response.data.resultCode === 0) {
+            dispatch(savePhotoSucces(file))
+        }
     }
 }

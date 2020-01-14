@@ -10,10 +10,12 @@ let ProfileDataForm = (props) => {
         <b>lookingForAJob :</b>{createField('', "lookingForAJob", [], InputLogin, { type: "checkbox" })}
         <div><b>skills :</b> {createField('description', "lookingForAJobDescription", [], Textarea)}</div>
         <div><b>about me :</b> {createField('aboutMe', "aboutMe", [], Textarea)}</div>
-        <div><b>Contacts :</b> {Object.keys(props.profile.profile.contacts).map(key => {
-
-        })}</div>
+        <div><b>Contacts :</b> {Object.keys(props.profile.profile.contacts).map(key => <div>
+            {key} :   {createField(key, "contacts." + key, [], InputLogin)}
+        </div>
+        )}</div>
         <div><button>Save</button></div>
+        { props.error ? <div>{props.error}</div> : undefined}
     </form>
 }
 let ProfileReduxForm = reduxForm({ form: 'ProfileInfo' })(ProfileDataForm)

@@ -8,6 +8,7 @@ import { Textarea } from '../common/formTypes'
 import StatusWithHooks from './ProfileWithHucs'
 import ProfileReduxForm from './ProfileDataForm'
 
+
 let maxLength = maxLengthCreator(10)
 
 let MessageForm = (props) => {
@@ -33,18 +34,20 @@ const Profile = (props) => {
     let addPostFunction = (text) => {
         props.AddPostThunk(text.chat)
     }
-let onSubmit=(formData)=>{
-    props.saveProfile(formData)
-  
-}
-
+    let onSubmit = (formData) => {
+        props.saveProfile(formData).then(() => {
+            setEditMode(false)
+        })
+    }
+    
     return (
+
         <div className='content container col-7'>
 
-            <StatusWithHooks {...props} status={props.status} />
+            <StatusWithHooks {...props} status={props.status} isOwner={props.isOwner} /*savePhoto={props.savePhoto}*/ />
             <MessageFormRedux onSubmit={addPostFunction} />
             {Post}
-            {editMode1 ? <ProfileReduxForm onSubmit={onSubmit} {...props} /> : <ProfileData editMode1={editMode1} {...props} isAuth={props.isAuth} goToEditMode={() => { setEditMode(true) }} />}
+            {editMode1 ? <ProfileReduxForm onSubmit={onSubmit} {...props} initialValues={props.profile.profile} /> : <ProfileData editMode1={editMode1} {...props} isAuth={props.isAuth} goToEditMode={() => { setEditMode(true) }} />}
 
         </div >
     )
@@ -63,7 +66,7 @@ let ProfileData = (props) => {
         {props.profile.profile.lookingForAJob ?
             <div><b>description :</b> {props.profile.profile.lookingForAJobDescription}</div> : undefined
         }
-        <div><b>about me :</b> {props.profile.profile.aboutMe }</div>
+        <div><b>about me :</b> {props.profile.profile.aboutMe}</div>
         <div><b>Contacts :</b> {Object.keys(props.profile.profile.contacts).map(key => {
             return <Contacts key={key} ContKey={key} ContValue={props.profile.profile.contacts[key]} />
         })}</div>

@@ -30,12 +30,23 @@ export const updateProfileStatus = (text) => {
     return instance.put('/profile/status', { status: text })
 }
 export const authLoginAPI = (email, password, rememberMe = false) => {
-    return instance.post('/auth/login', { email, password,rememberMe })
+    return instance.post('/auth/login', { email, password, rememberMe })
 }
 export const authLogOutAPI = () => {
     return instance.delete('/auth/login')
 }
 
 export const saveProfileApi = (profile) => {
-    return instance.put('/profile', profile )
+    return instance.put('/profile', profile)
+}
+
+export const savePhotoApi = (photoFile) => {
+
+    let formData = new FormData()
+    formData.append('image', photoFile)
+    return instance.put('/profile/photo', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    })
 }
