@@ -1,40 +1,37 @@
 #nav {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav {
-    background-color: #D7DDED;
-    font-size: 2em;
-    padding: 0;
-    margin: 0 auto;
-  
-  
-  }
-  ul a {
-    text-decoration: none;
-    color: #6F7E96;
-    margin-left: 1em;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-  nav ul {
-    padding: 0;
-    margin: 0;
-  
-  }
-  nav button{
-    color: antiquewhite;
-    background-color: #42597C;
-    border: 0;
-    height: 3em;
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  /* background-color: #d7dded; */
+  font-size: 2em;
+  padding: 0;
+}
+ul a {
+  text-decoration: none;
+  color: #6f7e96;
+  margin-left: 1em;
+}
+a:hover {
+  text-decoration: none;
+}
+nav ul {
+  padding: 0;
+  margin: 0;
+}
+nav button {
+  color: black;
+  border: 0;
+  height: 3em;
   width: 100%;
   padding: 0px!;
-  }
+  margin: 0;
+}
 
-  a.active {
-    color: black;
-  }
-  
-  
+nav button a {
+  font-size: 1rem;
+}
+a.active {
+  color: black;
+}

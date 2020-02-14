@@ -10,7 +10,7 @@ let maxLength = maxLengthCreator(100)
 let HistoryForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field name='history' component={Textarea} validate={[maxLength, required]}/>
+            <Field name='history' component={Textarea} validate={[maxLength]} />
             <button ></button>
         </form>
     )
@@ -28,7 +28,7 @@ let History = (props) => {
         props.addMessage(text.history)
     }
     return (
-        <div className='col-9'>
+        <div className='col-6'>
             <div className='row'>
                 <div className={`${s.text} col-12`}>Name</div>
             </div>

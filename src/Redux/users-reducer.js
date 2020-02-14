@@ -40,7 +40,7 @@ export const usersReducer = (state = initialState, action) => {
         case buttonIsClickeded:
             return {
                 ...state,
-                buttonIsClicked: /*action.buttonIsClicked ?*/ action.buttonIsClick/*, action.userId /*: state.buttonIsClicked.filter(id => id !== action.userId)*/
+                buttonIsClicked: action.buttonIsClick
             };
         default: return state;
     }
@@ -63,8 +63,8 @@ export let setTotalUserCountAC = (totalUsersCount) => {
 export let isFetchingAC = (isload) => {
     return { type: TOGGLE_IS_FETCHNING, isFetching: isload }
 }
-export let buttonIsClickededAC = (buttonIsClick/*, userId*/) => {
-    return { type: buttonIsClickeded, buttonIsClick/*, userId */ }
+export let buttonIsClickededAC = (buttonIsClick) => {
+    return { type: buttonIsClickeded, buttonIsClick }
 }
 
 export const getUsersThunkCreator = (currentPage, pageSize) => {

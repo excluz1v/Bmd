@@ -12,12 +12,12 @@ let FriendName = (props) => {
         let path = '/Dialogs/FriendName/' + props.id
         return (
             <div className='row'>
-                <div className={`${s.avatar} col-6`}><img alt ='img'src={`${props.ava}`} /></div>
+                <div className={`${s.avatar} col-6`}><img alt='img' src={`${props.ava}`} /></div>
                 <div className={`${s.nick} col-6`}><NavLink to={path}>{props.name}</NavLink></div>
             </div>
         )
     }
-    let DialogsOutdata = props.history.DialogsData.map((ele) => <DialogItem key={ele} ava={ele.img} name={ele.name} />)
+    let DialogsOutdata = props.history.DialogsData.map((ele) => <DialogItem key={Math.random()} ava={ele.img} name={ele.name} />)
 
     return (
         <div className={`col-3 ${s.conversation}`}>

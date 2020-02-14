@@ -7,10 +7,10 @@ import { compose } from 'redux';
 
 
 
-let Dialogs = (props) => {
+let Dialogs = () => {
     return (
-        <div className='container col-7 content'>
-            <div className='row'>
+        <div className='col-9 '>
+            <div className='row ml-3'>
                 <FriendNameContainer />
                 <HistoryContainer />
             </div>
@@ -24,6 +24,6 @@ let mapStateToProps = (state) => {
     }
 }
 
-let DialogContainer =  compose(connect(mapStateToProps, {}), AuthRedirect)(Dialogs)
+let DialogContainer = compose(connect(mapStateToProps, {}), AuthRedirect)(Dialogs)
 
-export {DialogContainer as default}
+export { DialogContainer as default }
