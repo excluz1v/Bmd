@@ -6,7 +6,7 @@ import { Field } from 'redux-form'
 export const Textarea = ({ input, meta, ...props }) => {
     return (
         <div>
-            <textarea className={meta.touched && meta.error && `${s.warning}`} {...props} {...input} />
+            <textarea className={meta.touched && meta.error ? `${s.warning}` : undefined} {...props} {...input} />
             <div>
                 {meta.error && meta.touched && <span className={`${s.error}`}>{meta.error}</span>}
             </div>
@@ -17,7 +17,7 @@ export const Textarea = ({ input, meta, ...props }) => {
 export const InputLogin = ({ input, meta, ...props }) => {
     return (
         <div>
-            <input className={meta.touched && meta.error && `${s.warning}`} {...props} {...input} />
+            <input className={meta.touched && meta.error ? `${s.warning}` : undefined} {...props} {...input} />
             <div>
                 {meta.error && meta.touched && <span className={`${s.error}`}>{meta.error}</span>}
             </div>

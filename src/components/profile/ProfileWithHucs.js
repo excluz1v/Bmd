@@ -29,8 +29,8 @@ const StatusWithHooks = (props) => {
     }
 
     return (
-        <div>
-            <div>{
+        <div className='row ml-3 d-flex'>
+            <div className='col-12'>{
                 !editMode ?
                     <div>
                         <span onDoubleClick={activateEditMode}>{props.status || 'Empty status'}</span>
@@ -40,9 +40,7 @@ const StatusWithHooks = (props) => {
                 </div> : undefined}
                 <div></div>
             </div>
-            <p></p>
-            <p></p>
-            <div>
+            <div className='col-12'>
                 <img src={props.profile.profile.photos.large || usersImg} className={s.largePhoto} alt='img' />
                 {props.isOwner ? undefined : <input type='file' onChange={addPhoto}></input>}
             </div>

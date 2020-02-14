@@ -1,23 +1,36 @@
-
 .content {
-    background-color: #fff;
+  background-color: #fff;
   text-align: center;
-  }
-  #post1 {
-    margin: 3em auto;
-  }
-  #post2 {
-    margin: 3em auto;
-  }
-  #post3 {
-    margin: 3em auto;
-  }
-  .btn {
-    width: 20%;
-    height: 10%;
-  }
-  .largePhoto{
-    width: 20em;
-    height: 20em;
-  }
-  
+}
+#post1 {
+  margin: 3em auto;
+}
+#post2 {
+  margin: 3em auto;
+}
+#post3 {
+  margin: 3em auto;
+}
+.btn {
+  width: 5rem;
+  height: 2rem;
+}
+.largePhoto {
+  width: 10rem;
+  height: 10rem;
+}
+
+.post {
+  list-style-type: none;
+}
+.posts {
+  overflow: auto;
+
+  height: 10rem;
+  border: solid 1px black;
+}
+.form textarea {
+  margin: 1rem auto;
+  width: 30rem;
+  height: 3rem;
+}

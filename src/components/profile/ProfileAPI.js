@@ -26,13 +26,13 @@ class ProfileAPI extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapShot) {
-  
+
         if (this.props.match.params.UserId != prevProps.match.params.UserId) {
             this.refreshProfile()
         }
     }
     render() {
-       
+
         return (
             <Profile {...this.props} savePhoto={this.props.savePhoto} isOwner={!!this.props.match.params.UserId}
             />
@@ -45,7 +45,7 @@ let mapStateToProps = (state) => {
         status: state.profilePage.status,
         autorezedUserId: state.auth.id,
         isAuth: state.auth.IsAuth,
-        
+
     }
 }
 

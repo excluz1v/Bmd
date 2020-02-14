@@ -1,16 +1,22 @@
-input{
-width: 20em;
+input {
+  width: 20em;
 }
 .warning {
-    border: 2px solid red;
+  border: 2px solid red;
 }
-.error{
-    color:red;
-    font-size: 1em;
+.error {
+  color: red;
+  font-size: 1em;
 }
-.formError{
-    margin-top: 2em;
-    border: 1px red solid;
-    color: red;
-    font-size: 1em;
+.formError {
+  margin-top: 2em;
+  border: 1px red solid;
+  color: red;
+  font-size: 1em;
+}
+.input {
+  width: 12rem;
+  height: 1.8rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
 }

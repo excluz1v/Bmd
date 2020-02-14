@@ -6,7 +6,7 @@ import { reduxForm } from 'redux-form';
 
 let ProfileDataForm = (props) => {
     return <form onSubmit={props.handleSubmit}>
-        {createField('full Name', "fullName", [], InputLogin)}
+        <b>FullName :</b>{createField('full Name', "fullName", [], InputLogin)}
         <b>lookingForAJob :</b>{createField('', "lookingForAJob", [], InputLogin, { type: "checkbox" })}
         <div><b>skills :</b> {createField('description', "lookingForAJobDescription", [], Textarea)}</div>
         <div><b>about me :</b> {createField('aboutMe', "aboutMe", [], Textarea)}</div>
@@ -15,7 +15,7 @@ let ProfileDataForm = (props) => {
         </div>
         )}</div>
         <div><button>Save</button></div>
-        { props.error ? <div>{props.error}</div> : undefined}
+        {props.error ? <div>{props.error}</div> : undefined}
     </form>
 }
 let ProfileReduxForm = reduxForm({ form: 'ProfileInfo' })(ProfileDataForm)
